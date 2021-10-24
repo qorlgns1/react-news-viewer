@@ -16,7 +16,8 @@ const NewsListBlock = styled.div`
   }
 `;
 
-const NewsList = () => {
+const NewsList = ({ category }) => {
+  console.log("before NewsList Category 확인", category);
   //console.log("앱 실행순서 확인하기 >>> 5");
   const [articles, setArticles] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -27,8 +28,10 @@ const NewsList = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
+        const query = category === "all" ? "" : `&category=${category}`;
+        console.log("NewsList Category 확인", query);
         const response = await axios.get(
-          "https://newsapi.org/v2/top-headlines?country=kr&apiKey=dd2aa711364c4dbb84c5615cedcab377",
+          `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=dd2aa711364c4dbb84c5615cedcab377`,
         );
         console.log("response", response);
         setArticles(response.data.articles);
@@ -38,7 +41,7 @@ const NewsList = () => {
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [category]);
 
   //console.log(2);
   if (loading) {
