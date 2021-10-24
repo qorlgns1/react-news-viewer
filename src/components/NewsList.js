@@ -17,11 +17,12 @@ const NewsListBlock = styled.div`
 `;
 
 const NewsList = () => {
+  //console.log("앱 실행순서 확인하기 >>> 5");
   const [articles, setArticles] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    console.log(1);
+    //console.log(1);
     //async를 사용하는 함수 따로 선언
     const fetchData = async () => {
       setLoading(true);
@@ -39,15 +40,15 @@ const NewsList = () => {
     fetchData();
   }, []);
 
-  console.log(2);
+  //console.log(2);
   if (loading) {
-    console.log(2.5);
+    //console.log(2.5);
     return <NewsListBlock>대기 중...</NewsListBlock>;
   }
 
-  console.log(3);
+  //console.log(3);
   if (!articles) {
-    console.log(3.5);
+    //console.log(3.5);
     return null;
   }
 
